@@ -1,31 +1,45 @@
 document.addEventListener('DOMContentLoaded', () => {
     const character = document.querySelector('.character')
     let isJumping = false
-    let isGoingRight = false
-    let isGoingLeft = false
-    let bottom = 0
+
+    let bottom = 50
     let gravity = 0.9
-    let left = 0
+    let left = 20
     let leftTimerId
     let rightTimerId
+    let upTimerId
+    
 
     function jump() {
-        //jump up
-        isJumping = true
-        bottom += 30
-        bottom = bottom * gravity
-        character.style.bottom = bottom + 'px'
+        let upTimerId = setInterval(function() {
+            // Jump down
+            if (bottom >  49) {
+                clearInterval(upTimerId)
+                let downTimerId = setInterval(function() {
+                    if (bottom < 50){
+                        clearInterval(downTimerId)
+                        isJumping = false
+                    }
+                    bottom = bottom * gravity
+                    character.style.bottom = bottom + 'px'
+                }, 30)
+            }
+            //jump up
+            isJumping = true
+            bottom += 100
+            bottom = bottom * gravity
+            character.style.bottom = bottom + 'px'
+        }, 30)
     }
 
     function moveLeft() {
-            left -= 5
-            character.style.left = left + 'px'
+        left -= 20
+        character.style.left = left + 'px'
     }
 
     function moveRight() {
-        left += 5    
-        character.style.left = left + 'px'
-            
+        left += 20    
+        character.style.left = left + 'px'  
     }
     
 
