@@ -1,6 +1,9 @@
 document.addEventListener('DOMContentLoaded', () => {
     const character = document.querySelector('.character')
+    
     let isJumping = false
+    let isGoingRight = false
+    let isGoingLeft = false
 
     let bottom = 50
     let gravity = 0.9
@@ -8,6 +11,20 @@ document.addEventListener('DOMContentLoaded', () => {
     let leftTimerId
     let rightTimerId
     let upTimerId
+    let container
+
+// PLANTEAMIENTO: CREAR VARIABLES PARA X E Y (POS) PARA SALTO Y MOVIMIENTO
+
+    //obstacles
+/*     function createObstacle() {
+        let obstacles =document.createElement('div')
+        container.appendChild(obstacles)
+        obstacles.classList.add('obst')
+        obstacles.style.left = container.bottom + 'px'
+    }
+
+    createObstacle() */
+    
     
 
     function jump() {
@@ -25,6 +42,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 }, 30)
             }
             //jump up
+// IMPLEMENTAR Set Interval
             isJumping = true
             bottom += 100
             bottom = bottom * gravity
@@ -33,13 +51,24 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function moveLeft() {
-        left -= 20
-        character.style.left = left + 'px'
+// IMPLEMENTAR Set Interval y keyUp
+        isGoingLeft = true
+        if(left>0){
+            left -= 20
+            character.style.left = left + 'px'            
+        }
     }
 
     function moveRight() {
-        left += 20    
-        character.style.left = left + 'px'  
+// IMPLEMENTAR Set Interval y keyUp
+        if (isGoingLeft) {
+            clearInterval(leftTimerId)
+            isGoingLeft = false
+        }
+        if (left < 1100) {
+            left += 20    
+                character.style.left = left + 'px' 
+        }    
     }
     
 
@@ -47,13 +76,14 @@ document.addEventListener('DOMContentLoaded', () => {
     function control(e) {
         if (e.keyCode === 39) {
             moveRight() //if we press the right arrow on our keyboard
-        } else if (e.keyCode === 32) {
+        }
+        if (e.keyCode === 32) {
             jump() // if we press space
-        } else if (e.keyCode === 37){ 
+        }
+        if (e.keyCode === 37){ 
             moveLeft() // if we press left
         }
-        console.log(e)
     }
-    document.addEventListener('keyup', control)
+    document.addEventListener('keydown', control)
 })
 
