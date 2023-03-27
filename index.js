@@ -3,7 +3,6 @@ const character = document.querySelector('.character')
 let isJumping = false
 let isGoingRight = false
 let isGoingLeft = false
-var boxLeft = 1200
 let bottom = 50
 let left = 20
 let leftTimerId
@@ -14,16 +13,6 @@ let gravity = 0.9
 
 
 // PLANTEAMIENTO: CREAR VARIABLES PARA X E Y (POS) PARA SALTO Y MOVIMIENTO
-
-    //obstacles
-/*     function createObstacle() {
-        let obstacles =document.createElement('div')
-        container.appendChild(obstacles)
-        obstacles.classList.add('obst')
-        obstacles.style.left = container.bottom + 'px'
-    }
-
-    createObstacle() */
 
 function jump() {
     let upTimerId = setInterval(function() {
@@ -75,35 +64,41 @@ function control(e) {
 document.addEventListener('keydown', control)
 
 // OBSTÁCULOS
+const canvas = document.querySelector('#canvas') 
+
+var boxLeft = 1200
+var obstacles = []
+
 function Game() {
-    
 }
 
+function Obstacle() {
+    this.box = document.createElement('div')
+    this.boxLeft = 1200
+    this.timerId
+}
 
-const canvas = document.querySelector('#canvas')
-const box    = document.createElement('div')
-
-
-
-function addObst() {
+Obstacle.prototype.create = function() {
     canvas
-    .appendChild(box)
-    .classList.add('obst')
+        .appendChild(this.box)
+        .classList.add('obst')
 }
 
-function moveObs() {
-    boxLeft -= 10 
-    box.style.left = boxLeft + 'px'
-    if (boxLeft < (-50)) {
-        clearInterval(boxTimer)
-        canvas.removeChild(box)
+Obstacle.prototype.move = function() {
+    this.boxLeft -= 10
+    caja.box.style.left = this.boxLeft + 'px'
+    if (this.boxLeft < (-50)) {
+        clearInterval()
+        canvas.removeChild(caja.box)
     }
-    
-    
-}
+    this.timerId = setInterval(this.move, 50)
+}   
 
-let boxTimer = setInterval(moveObs, 50)
-addObst()
+let caja = new Obstacle
+caja.create();
+caja.move()
+
+
 
 
 
