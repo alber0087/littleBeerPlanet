@@ -7,8 +7,6 @@ let bottom = 50
 let left = 20
 let leftTimerId
 let rightTimerId
-let upTimerId
-let container
 let gravity = 0.9
 
 
@@ -63,40 +61,50 @@ function control(e) {
 
 document.addEventListener('keydown', control)
 
+
+function Game() {
+    // start()
+    // gameover()
+    // control()
+    // OBSTACLES
+    
+}
+
 // OBSTÁCULOS
 const canvas = document.querySelector('#canvas') 
 
 var boxLeft = 1200
 var obstacles = []
 
-function Game() {
-}
-
 function Obstacle() {
     this.box = document.createElement('div')
     this.boxLeft = 1200
     this.timerId
+    
 }
 
 Obstacle.prototype.create = function() {
     canvas
-        .appendChild(this.box)
+        .appendChild(caja.box)
         .classList.add('obst')
 }
 
 Obstacle.prototype.move = function() {
-    this.boxLeft -= 10
+    this.boxLeft -= 10  
     caja.box.style.left = this.boxLeft + 'px'
-    if (this.boxLeft < (-50)) {
-        clearInterval()
+    if (this.boxLeft < (50)) {
+        clearInterval(caja.timerId)
         canvas.removeChild(caja.box)
     }
     this.timerId = setInterval(this.move, 50)
-}   
+}
 
-let caja = new Obstacle
-caja.create();
-caja.move()
+setInterval(function(){
+    var caja = new Obstacle
+    caja.create()
+    caja.move()
+
+}, 1500)
 
 
 
