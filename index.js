@@ -3,7 +3,7 @@ const character = document.querySelector('.character')
 let isJumping = false
 let isGoingRight = false
 let isGoingLeft = false
-
+var boxLeft = 1200
 let bottom = 50
 let left = 20
 let leftTimerId
@@ -75,16 +75,38 @@ function control(e) {
 document.addEventListener('keydown', control)
 
 // OBSTÁCULOS
+function Game() {
+    
+}
+
+
 const canvas = document.querySelector('#canvas')
 const box    = document.createElement('div')
 
+
+
 function addObst() {
     canvas
-        .appendChild(box)
-        .classList.add('obst')
-    }
+    .appendChild(box)
+    .classList.add('obst')
+}
 
+function moveObs() {
+    boxLeft -= 10 
+    box.style.left = boxLeft + 'px'
+    if (boxLeft < (-50)) {
+        clearInterval(boxTimer)
+        canvas.removeChild(box)
+    }
+    
+    
+}
+
+let boxTimer = setInterval(moveObs, 50)
 addObst()
+
+
+
 
 
 
