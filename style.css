@@ -1,5 +1,10 @@
+:root {
+    --color-primary: ;
+}
+
 body {
     margin: 0;
+    overflow: hidden;
 }
 
 #container {
@@ -16,19 +21,52 @@ body {
     width: 1200px;
     position: relative;
     border: 4px solid black;
+    overflow: hidden;
 }
 
-.sky {
+.bg1 {
     position: absolute;
     bottom: 0;
     left: 0;
     height: 680px;
-    width: 100%;
+    width: 200%;
     background-color: aqua;
-    background-image: url(./assets/img/cyberpunk-street.png);
-    background-repeat: repeat-x 0px 0px;
-    background-size:cover;
-    /* z-index: -1; */
+    background: url(./assets/img/foreground.png);
+    background-repeat: repeat-x;
+    background-size:contain;
+    animation: moveBg 18s linear infinite;
+    z-index: 1;
+}
+
+.bg2 {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 680px;
+    width: 200%;
+    background-color: aqua;
+    background: url(./assets/img/back-buildings.png);
+    background-repeat: repeat-x;
+    background-size: contain;
+    animation: moveBg 32s linear infinite;
+    z-index: 0;
+}
+
+.bg3 {
+    background: url(./assets/img/far-buildings.png) no-repeat;
+    background-size: cover;
+    width: 100%;
+    height: 100%;
+    z-index: -3;
+}
+
+@keyframes moveBg {
+    0% {
+        transform: translate3d(0, 0, 0);
+    }
+    100% {
+        transform: translate3d(-1200px, 0, 0);
+    }
 }
 
 .ground {
@@ -69,27 +107,10 @@ body {
     z-index: 5;
 }
 
-.box {
+.obst {
+    background-color: chartreuse;
+    position: relative;
+        
     width: 50px;
     height: 50px;
-    background-color: brown;
-    z-index: 9;
-}
-
-.obst1 {
-    position: absolute;
-    bottom: 50px;
-    left: 200px;
-}
-
-.obst2 {
-    position: absolute;
-    bottom: 50px;
-    left: 600px;
-}
-
-.obst3 {
-    position: absolute;
-    bottom: 50px;
-    left: 900px;
 }
