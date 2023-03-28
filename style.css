@@ -80,7 +80,6 @@ body {
 }
 
 .character {
-    background-color: darkcyan;
     width: 100px;
     height: 100px;
     z-index: 9;
@@ -89,10 +88,6 @@ body {
     left: 30px;
     background: url(./assets/img/AlBeer.gif) no-repeat;
     background-size: contain;
-}
-
-.reverse {
-    
 }
 
 .display {
@@ -110,12 +105,8 @@ body {
     z-index: 5;
 }
 
-.obst {
+.obstacle {
     background-color: chartreuse;
-    position: absolute;
-    top: 590px;
-    width: 50px;
-    height: 50px;
     z-index: 9;
 }
 
