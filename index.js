@@ -9,11 +9,16 @@ window.addEventListener('load', function() {
     canvas.width = 1200
 
     function InputHandler() {
+        let isJumping = false
         window.addEventListener('keydown', (e) => {
-            if (e.key === 'ArrowUp') { character.velocity.y -= 15 }
+            if (e.key === 'ArrowUp' && !isJumping) { 
+                character.velocity.y -= 15 
+            }
         })
         window.addEventListener('keyup',   (e) => {
-            if (e.key === 'ArrowUp') { character.velocity.y = 0   }
+            if (e.key === 'ArrowUp') { 
+                character.velocity.y = 0
+            }
         })
     }
 
@@ -80,12 +85,16 @@ window.addEventListener('load', function() {
         this.drawObstacle()
         this.position.x += this.velocity.x
         this.position.x -= 2
+
+        // console.log(this.position)
+
+        if (this.position.x < (this.width)*(-1)) { this.velocity = 0}
     }
     
     const obstacle1 = new Obstacle()
 
     function handleObstacles(){
-
+        // let obstaclesArray = []
     }
 
     function displayStats(){
@@ -97,7 +106,9 @@ window.addEventListener('load', function() {
         ctx.clearRect(0, 0, canvas.width, canvas.height)
         character.update()
         obstacle1.moveObstacle()
+        collisions()
     }
+
 
     animate()  
     
@@ -115,6 +126,21 @@ window.addEventListener('load', function() {
     }
     
     // gameover()
+
+    function collisions() {
+        console.log(character.position.x)
+        console.log(obstacle1.position.x)
+
+        if(
+            character.position.x + character.width > obstacle1.position.x &&
+            character.position.x < obstacle1.position.x + obstacle1.width &&
+            character.position.y < obstacle1.position.y + obstacle1.height &&
+            character.position.y + character.height > obstacle1.position.y
+            ) { window.alert('Game Over') }
+
+
+
+    }
 
 
    
