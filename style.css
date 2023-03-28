@@ -16,12 +16,16 @@ body {
     align-items: center;
 }
 
-#canvas {
+/* #canvas {
     height: 680px;
     width: 1200px;
     position: relative;
     border: 4px solid black;
     overflow: hidden;
+} */
+
+canvas {
+    background-color: azure;
 }
 
 .bg1 {
@@ -80,7 +84,7 @@ body {
     z-index: 4;
 }
 
-.character {
+/* .character {
     background-color: darkcyan;
     width: 100px;
     height: 100px;
@@ -90,7 +94,7 @@ body {
     left: 30px;
     background: url(./assets/img/AlBeer.gif) no-repeat;
     background-size: contain;
-}
+} */
 
 .display {
     position: absolute;

@@ -1,5 +1,4 @@
-export default function Control () {
-
+function Control() {
     function jump() {
         let upTimerId = setInterval(function () {
             // Jump down
@@ -52,3 +51,5 @@ export default function Control () {
 
     document.addEventListener('keydown', control)
 }
+
+export default
