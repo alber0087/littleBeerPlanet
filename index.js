@@ -3,7 +3,7 @@
 
 window.addEventListener('load', function(){
 
-    const canvas = document.querySelector('#canvas')
+    const canvas = document.querySelector('canvas')
     const ctx = canvas.getContext('2d')
     canvas.height = 680
     canvas.width = 1200
@@ -12,12 +12,14 @@ window.addEventListener('load', function(){
         this.keys = []
         window.addEventListener('keydown', (e) => {
             if(e.key === 'ArrowUp' && this.keys.indexOf(e.key) === -1){
-                this.keys.push(e.key) // Push its in the array
+                this.keys.push(e.key)
+                character.velocity.y -= 15 // Push its in the array
             }
         })
         window.addEventListener('keyup', (e) => {
             if (e.key === 'ArrowUp') {
                 this.keys.splice(this.keys.indexOf(e.key), 1) // Removes from the array
+                character.velocity.y = 0
             }
         })
     }
@@ -42,7 +44,6 @@ window.addEventListener('load', function(){
         }
         this.width = 50
         this.height = 50
-        this.direction = 0
     }
 
     Player.prototype.drawCharacter = function() {
@@ -105,32 +106,7 @@ window.addEventListener('load', function(){
         character.update()
     }
 
-    animate()
-
-    window.addEventListener('keydown', ({ keyCode }) => {
-        switch (keyCode) {
-            case 38:
-                console.log('up')
-                character.velocity.y -= 10
-                break
-        }
-    })
-
-    window.addEventListener('keyup', ({ keyCode }) => {
-        switch (keyCode) {
-            case 38:
-                console.log('up')
-                character.velocity.y = 0
-                break
-        }
-    })
-
-
-
-
-
-    // character = document.querySelector('.character')
-    
+    animate()  
     
     function Game() {
     
