@@ -1,26 +1,19 @@
 
 // Waits for loading all the assets
 
-window.addEventListener('load', function(){
+window.addEventListener('load', function() {
 
     const canvas = document.querySelector('canvas')
     const ctx = canvas.getContext('2d')
     canvas.height = 680
     canvas.width = 1200
 
-    function InputHandler(){
-        this.keys = []
+    function InputHandler() {
         window.addEventListener('keydown', (e) => {
-            if(e.key === 'ArrowUp' && this.keys.indexOf(e.key) === -1){
-                this.keys.push(e.key)
-                character.velocity.y -= 15 // Push its in the array
-            }
+            if (e.key === 'ArrowUp') { character.velocity.y -= 15 }
         })
-        window.addEventListener('keyup', (e) => {
-            if (e.key === 'ArrowUp') {
-                this.keys.splice(this.keys.indexOf(e.key), 1) // Removes from the array
-                character.velocity.y = 0
-            }
+        window.addEventListener('keyup',   (e) => {
+            if (e.key === 'ArrowUp') { character.velocity.y = 0   }
         })
     }
 
@@ -42,8 +35,8 @@ window.addEventListener('load', function(){
             x: 0,
             y: 0
         }
-        this.width = 50
-        this.height = 50
+        this.width = 100
+        this.height = 100
     }
 
     Player.prototype.drawCharacter = function() {
@@ -66,31 +59,30 @@ window.addEventListener('load', function(){
     // OBSTÁCULOS
     
     function Obstacle() {
-        this.box = document.createElement('div')
-        this.boxLeft = 1200
-        this.timerId
-    }
-    
-    Obstacle.prototype.create = function() {
-        canvas
-            .appendChild(caja.box)
-            .classList.add('obst')
-    }
-    
-    Obstacle.prototype.move = function() {
-        this.boxLeft -= 10  
-        caja.box.style.left = this.boxLeft + 'px'
-        if (this.boxLeft < (-50)) {
-            clearInterval(caja.timerId)
-            canvas.removeChild(caja.box)
+        this.position = {
+            x: 1100,
+            y: 580
         }
-        this.timerId = setInterval(this.move, 50)
+        this.velocity = {
+            x: 0,
+            y: 0
+        }
+        this.width = 100
+        this.height = 100
     }
     
-    let caja = new Obstacle
+    Obstacle.prototype.drawObstacle = function() {
+        ctx.fillStyle = 'red'
+        ctx.fillRect(this.position.x, this.position.y, this.width, this.height)
+    }
     
-    caja.create()
-    caja.move()
+    Obstacle.prototype.moveObstacle = function() {
+        this.drawObstacle()
+        this.position.x += this.velocity.x
+        this.position.x -= 2
+    }
+    
+    const obstacle1 = new Obstacle()
 
     function handleObstacles(){
 
@@ -104,6 +96,7 @@ window.addEventListener('load', function(){
         requestAnimationFrame(animate)
         ctx.clearRect(0, 0, canvas.width, canvas.height)
         character.update()
+        obstacle1.moveObstacle()
     }
 
     animate()  
