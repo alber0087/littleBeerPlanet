@@ -4,6 +4,8 @@
 window.addEventListener('load', function() {
 
     const canvas = document.querySelector('canvas')
+    const image = document.getElementById('player')
+
     const ctx = canvas.getContext('2d')
     canvas.height = 680
     canvas.width = 1200
@@ -23,8 +25,6 @@ window.addEventListener('load', function() {
     }
 
     const input = new InputHandler()
-
-
 
 
     // --------------------------------------------------------------- //
@@ -47,6 +47,7 @@ window.addEventListener('load', function() {
     Player.prototype.drawCharacter = function() {
         ctx.fillStyle = 'blue'
         ctx.fillRect(this.position.x, this.position.y, this.width, this.height)
+        ctx.drawImage(image, this.position.x, this.position.y, this.width, this.height)
     }
 
     Player.prototype.update = function() {
@@ -109,42 +110,32 @@ window.addEventListener('load', function() {
         collisions()
     }
 
-
     animate()  
     
-    function Game() {
     
-        // start() --> Loop
-            // Player
-            // OBSTACLES  
-            // Collisions
-        // control()
-    }
     
-    function Start() {
-    
-    }
-    
-    // gameover()
-
     function collisions() {
-        console.log(character.position.x)
-        console.log(obstacle1.position.x)
 
-        if(
-            character.position.x + character.width > obstacle1.position.x &&
-            character.position.x < obstacle1.position.x + obstacle1.width &&
-            character.position.y < obstacle1.position.y + obstacle1.height &&
-            character.position.y + character.height > obstacle1.position.y
-            ) { window.alert('Game Over') }
-
-
-
+        let charPos = character.position
+        let obstPos = obstacle1.position
+        
+        if  (
+            charPos.x + character.width  > obstPos.x &&
+            charPos.y + character.height > obstPos.y &&
+            charPos.y < obstPos.y + obstacle1.height &&
+            charPos.x < obstPos.x + obstacle1.width 
+            ){
+                obstacle1.velocity = 0
+                gameOver()
+            }        
     }
-
-
-   
-    
+        
+        
+    function gameOver() {
+        const mensaje = canvas.appendChild(document.createElement('div'))
+        mensaje.classList.add('game-over')
+        console.log('Game Over')
+    }
 
 })
 
