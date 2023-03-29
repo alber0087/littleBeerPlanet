@@ -132,9 +132,11 @@ window.addEventListener('load', function() {
         
     function gameOver() {
         const container = document.querySelector('#container')
-        const mensaje = container.appendChild(document.createElement('div'))
+        const mensaje = document.createElement('img')
         mensaje.classList.add('game-over')
-        mensaje.innerText('GAME OVER')
+        mensaje.setAttribute('src', './assets/img/gameover.png')
+
+        container.appendChild(mensaje)
         console.log('Game Over')
     }
 

@@ -15,9 +15,6 @@ body {
     align-items: center;
 }
 
-canvas {
-
-}
 
 #canvas {
     height: 680px;
@@ -115,12 +112,8 @@ canvas {
 }
 
 .game-over {
-    background-color: darkcyan;
     position: absolute;
     width: 600px;
     height: 300px;
-    z-index: 99;
-    color: aliceblue;
-    background: url(./assets/img/482-4821579_game-over-png-graphic-design.jpeg);
-
+    object-fit: cover;
 }
