@@ -4,7 +4,6 @@
 window.addEventListener('load', function() {
 
     const canvas = document.querySelector('canvas')
-
     const ctx = canvas.getContext('2d')
     canvas.height = 680
     canvas.width = 1200
@@ -103,11 +102,15 @@ window.addEventListener('load', function() {
         generateObstacle()
     }, 3000)
 
+    let score = 0
+    const display = document.querySelector('.display')
+    let scoreDisplay = document.createElement('p')
+    display.appendChild(scoreDisplay)
 
-    console.log(obstacles)
 
     function displayStats(){
-
+        score = obstacles.length
+        scoreDisplay.innerText = score
     }
 
     function animate(){
@@ -118,7 +121,8 @@ window.addEventListener('load', function() {
             obstacle.moveObstacle()
         })
 
-        collisions()  
+        collisions()
+        displayStats()  
     }
     
     function collisions() {
@@ -137,12 +141,11 @@ window.addEventListener('load', function() {
                     gameOver()
                 }        
             }
-        )}
-        
-        
+            )}
+            
+            
     function gameOver() {
-        
-        const container = document.querySelector('#container')
+
 
         const wrapper = document.createElement('div')
         wrapper.classList.add('wrapper')
@@ -170,6 +173,10 @@ window.addEventListener('load', function() {
     }
     
     function start(){
+        const display = document.querySelector('.display')
+        const container = document.querySelector('#container')
+        container.removeChild(display) 
+
         const start = document.createElement('div')
         start.classList.add('start')
         document.body.appendChild(start)
@@ -178,6 +185,7 @@ window.addEventListener('load', function() {
         start.addEventListener('click', function(){
             document.body.removeChild(start)
             animate()
+            container.appendChild(display)
         })
     }
 
