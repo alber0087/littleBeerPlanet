@@ -85,7 +85,7 @@ window.addEventListener('load', function() {
     Obstacle.prototype.moveObstacle = function() {
         this.drawObstacle()
         this.position.x += this.velocity.x
-        this.position.x -= 10
+        this.position.x -= 2
 
         // console.log(this.position)
 
@@ -125,6 +125,7 @@ window.addEventListener('load', function() {
             charPos.x < obstPos.x + obstacle1.width 
             ){
                 obstacle1.velocity = 0
+                character.velocity = 0
                 gameOver()
             }        
     }
@@ -132,15 +133,36 @@ window.addEventListener('load', function() {
         
     function gameOver() {
         const container = document.querySelector('#container')
+
+        const wrapper = document.createElement('div')
+        wrapper.classList.add('wrapper')
+
         const mensaje = document.createElement('img')
         mensaje.classList.add('game-over')
         mensaje.setAttribute('src', './assets/img/gameover.png')
 
-        container.appendChild(mensaje)
+        container.appendChild(wrapper)
+        wrapper.appendChild(mensaje)
         console.log('Game Over')
-    }
 
+        const restart = document.createElement('div')
+
+        setTimeout(() => {
+            console.log('New Game')
+            restart.classList.add('restart')
+            wrapper.appendChild(restart)
+
+            restart.innerHTML = '<span>-- RESTART --</span>'
+
+        }, 1500)
+        
+        restart.addEventListener('click', function(){
+            location.reload()
+        })
+    }
 })
+
+// location.reload()
 
 
 

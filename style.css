@@ -84,9 +84,7 @@ body {
     width: 100px;
     height: 100px;
     z-index: 9;
-    position: absolute;
-    bottom: 40px;
-    left: 30px;
+
     background: url(./assets/img/AlBeer.gif) no-repeat;
     background-size: contain;
 }
@@ -111,9 +109,31 @@ body {
     z-index: 9;
 }
 
-.game-over {
+.wrapper {
     position: absolute;
     width: 600px;
-    height: 300px;
+    height: 450px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.game-over {
+    width: 600px;
+    height: 370px;
     object-fit: cover;
+}
+
+.restart {
+    width: fit-content;
+    height: 50px;
+    color: pink;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 40px;
+    font-weight: 600;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: crosshair;
 }
