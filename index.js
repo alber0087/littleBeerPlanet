@@ -89,21 +89,22 @@ window.addEventListener('load', function() {
 
         if (this.position.x < (this.width)*(-1)) { this.velocity = 0}
     }
-    
-    const obstacle1 = new Obstacle()
-    const obstacle2 = new Obstacle()
-    const obstacle3 = new Obstacle()
 
-    obstacle2.position.x = 1800
-    obstacle3.position.x = 2400
+    const obstacles = []
+    const count = 0
 
-
-    console.log(obstacle1.position.x)
-    console.log(obstacle2.position.x)
-
-    function handleObstacles(){
-        // let obstaclesArray = []
+    const generateObstacle = function() {
+        let count = new Obstacle
+        obstacles.push(count)
+        count++
     }
+
+    const timer = setInterval(() => {
+        generateObstacle()
+    }, 3000)
+
+
+    console.log(obstacles)
 
     function displayStats(){
 
@@ -113,31 +114,30 @@ window.addEventListener('load', function() {
         requestAnimationFrame(animate)
         ctx.clearRect(0, 0, canvas.width, canvas.height)
         character.update()
-        obstacle1.moveObstacle()
-        obstacle2.moveObstacle()
-        obstacle3.moveObstacle()
+        obstacles.forEach(obstacle => {
+            obstacle.moveObstacle()
+        })
 
-
-        collisions()
-        
+        collisions()  
     }
     
     function collisions() {
-
-        let charPos = character.position
-        let obstPos = obstacle1.position
-        
-        if  (
-            charPos.x + character.width  > obstPos.x &&
-            charPos.y + character.height > obstPos.y &&
-            charPos.y < obstPos.y + obstacle1.height &&
-            charPos.x < obstPos.x + obstacle1.width 
-            ){
-                character.velocity = 0
-                obstacle1.velocity = 0
-                gameOver()
-            }        
-    }
+        obstacles.forEach((obstacle) => {
+            let charPos = character.position
+            let obstPos = obstacle.position
+            if  (
+                charPos.x + character.width  > obstPos.x &&
+                charPos.y + character.height > obstPos.y &&
+                charPos.y < obstPos.y + obstacle.height &&
+                charPos.x < obstPos.x + obstacle.width 
+                ){
+                    character.velocity = 0
+                    obstacle.velocity = 0
+                    clearInterval(timer)
+                    gameOver()
+                }        
+            }
+        )}
         
         
     function gameOver() {
