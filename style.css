@@ -15,6 +15,10 @@ body {
     align-items: center;
 }
 
+canvas {
+
+}
+
 #canvas {
     height: 680px;
     width: 1200px;
@@ -116,5 +120,7 @@ body {
     width: 600px;
     height: 300px;
     z-index: 99;
+    color: aliceblue;
+    background: url(./assets/img/482-4821579_game-over-png-graphic-design.jpeg);
 
 }

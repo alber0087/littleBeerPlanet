@@ -3,11 +3,11 @@
 
 window.addEventListener('load', function() {
 
-    // const canvas = document.querySelector('canvas')
+    const canvas = document.querySelector('canvas')
 
-    // const ctx = canvas.getContext('2d')
-    // canvas.height = 680
-    // canvas.width = 1200
+    const ctx = canvas.getContext('2d')
+    canvas.height = 680
+    canvas.width = 1200
 
     function InputHandler() {
         let isJumping = false
@@ -42,16 +42,10 @@ window.addEventListener('load', function() {
         this.width = 100
         this.height = 100
     }
-
-    const canvas = document.getElementById('canvas')
-    const player = document.createElement('div')
-    player.src = './assets/img/AlBeer.gif'
-
-    canvas.appendChild(player).classList.add('character')
     
     Player.prototype.drawCharacter = function() {
-        // ctx.fillStyle = 'blue'
-        // ctx.fillRect(this.position.x, this.position.y, this.width, this.height)
+        ctx.fillStyle = 'blue'
+        ctx.fillRect(this.position.x, this.position.y, this.width, this.height)
         // ctx.drawImage(image, this.position.x, this.position.y, this.width, this.height)
 
     }
@@ -84,14 +78,14 @@ window.addEventListener('load', function() {
     }
     
     Obstacle.prototype.drawObstacle = function() {
-        // ctx.fillStyle = 'red'
-        // ctx.fillRect(this.position.x, this.position.y, this.width, this.height)
+        ctx.fillStyle = 'red'
+        ctx.fillRect(this.position.x, this.position.y, this.width, this.height)
     }
     
     Obstacle.prototype.moveObstacle = function() {
         this.drawObstacle()
         this.position.x += this.velocity.x
-        this.position.x -= 2
+        this.position.x -= 10
 
         // console.log(this.position)
 
@@ -110,15 +104,14 @@ window.addEventListener('load', function() {
 
     function animate(){
         requestAnimationFrame(animate)
-        // ctx.clearRect(0, 0, canvas.width, canvas.height)
+        ctx.clearRect(0, 0, canvas.width, canvas.height)
         character.update()
         obstacle1.moveObstacle()
         collisions()
     }
 
     animate()  
-    
-    
+
     
     function collisions() {
 
@@ -138,8 +131,10 @@ window.addEventListener('load', function() {
         
         
     function gameOver() {
-        const mensaje = canvas.appendChild(document.createElement('div'))
+        const container = document.querySelector('#container')
+        const mensaje = container.appendChild(document.createElement('div'))
         mensaje.classList.add('game-over')
+        mensaje.innerText('GAME OVER')
         console.log('Game Over')
     }
 
