@@ -87,7 +87,7 @@ window.addEventListener('load', function() {
         this.position.x += this.velocity.x
         this.position.x -= 2
 
-        // console.log(this.position)
+        console.log(this.position)
 
         if (this.position.x < (this.width)*(-1)) { this.velocity = 0}
     }
@@ -110,7 +110,7 @@ window.addEventListener('load', function() {
         collisions()
     }
 
-    animate()  
+
 
     
     function collisions() {
@@ -143,12 +143,10 @@ window.addEventListener('load', function() {
 
         container.appendChild(wrapper)
         wrapper.appendChild(mensaje)
-        console.log('Game Over')
 
         const restart = document.createElement('div')
 
         setTimeout(() => {
-            console.log('New Game')
             restart.classList.add('restart')
             wrapper.appendChild(restart)
 
@@ -160,9 +158,23 @@ window.addEventListener('load', function() {
             location.reload()
         })
     }
+    
+    function start(){
+        const start = document.createElement('div')
+        start.classList.add('start')
+        document.body.appendChild(start)
+    
+        start.innerHTML = '<span>START</span>'
+        start.addEventListener('click', function(){
+            document.body.removeChild(start)
+            animate()
+        })
+    }
+
+    start()
+
 })
 
-// location.reload()
 
 
 

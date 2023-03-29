@@ -3,34 +3,37 @@
 }
 
 body {
-    margin: 0;
-}
-
-#container {
-    background-color: bisque;
-    width: 100vw;
     height: 100vh;
+    width: 100vw;
+    margin: 0;
+    background-color: black;
     display: flex;
     justify-content: center;
     align-items: center;
+    overflow: hidden;
 }
 
+#container {
+    width: 1200px;
+    height: 680px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
 
 #canvas {
     height: 680px;
     width: 1200px;
     position: relative;
     border: 4px solid black;
-    overflow: hidden;
+    z-index: 10;
 }
 
 .bg1 {
     position: absolute;
-    bottom: 0;
-    left: 0;
     height: 680px;
     width: 200%;
-    background-color: aqua;
     background: url(./assets/img/foreground.png);
     background-repeat: repeat-x;
     background-size:contain;
@@ -40,8 +43,6 @@ body {
 
 .bg2 {
     position: absolute;
-    bottom: 0;
-    left: 0;
     height: 680px;
     width: 200%;
     background-color: aqua;
@@ -53,11 +54,10 @@ body {
 }
 
 .bg3 {
-    background: url(./assets/img/far-buildings.png) no-repeat;
-    background-size: cover;
+    background: url(./assets/img/back-buildings.png);
     width: 100%;
     height: 100%;
-    z-index: -3;
+
 }
 
 @keyframes moveBg {
@@ -67,17 +67,6 @@ body {
     100% {
         transform: translate3d(-1200px, 0, 0);
     }
-}
-
-.ground {
-    position: absolute;
-    background-color: olive;
-    opacity: 0.6;;
-    height: 50px;
-    width: 100%;
-    bottom: 0;
-    left: 0;
-    z-index: 4;
 }
 
 .character {
@@ -101,12 +90,12 @@ body {
     align-items: center;
     color: azure;
     font-size: 2rem;
-    z-index: 5;
+    z-index: 11;
 }
 
 .obstacle {
     background-color: chartreuse;
-    z-index: 9;
+    z-index: 12;
 }
 
 .wrapper {
@@ -123,12 +112,13 @@ body {
     width: 600px;
     height: 370px;
     object-fit: cover;
+    z-index: 15;
 }
 
 .restart {
     width: fit-content;
     height: 50px;
-    color: pink;
+    color: white;
     font-family: 'Courier New', Courier, monospace;
     font-size: 40px;
     font-weight: 600;
@@ -136,4 +126,20 @@ body {
     justify-content: center;
     align-items: center;
     cursor: crosshair;
+    z-index: 15;
+}
+
+.start {
+    position: absolute;
+    height: 300px;
+    width: 600px;
+    color: azure;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: crosshair;
+    font-size: 60px;
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: 600;
+    z-index: 15;
 }
