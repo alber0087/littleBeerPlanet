@@ -44,6 +44,7 @@ window.addEventListener('load', function() {
     }
     
     Player.prototype.drawCharacter = function() {
+        ctx.beginPath()
         ctx.fillStyle = 'blue'
         ctx.fillRect(this.position.x, this.position.y, this.width, this.height)
         // ctx.drawImage(image, this.position.x, this.position.y, this.width, this.height)
@@ -81,18 +82,24 @@ window.addEventListener('load', function() {
         ctx.fillStyle = 'red'
         ctx.fillRect(this.position.x, this.position.y, this.width, this.height)
     }
-    
     Obstacle.prototype.moveObstacle = function() {
         this.drawObstacle()
         this.position.x += this.velocity.x
-        this.position.x -= 2
-
-        console.log(this.position)
+        this.position.x -= 3
 
         if (this.position.x < (this.width)*(-1)) { this.velocity = 0}
     }
     
     const obstacle1 = new Obstacle()
+    const obstacle2 = new Obstacle()
+    const obstacle3 = new Obstacle()
+
+    obstacle2.position.x = 1800
+    obstacle3.position.x = 2400
+
+
+    console.log(obstacle1.position.x)
+    console.log(obstacle2.position.x)
 
     function handleObstacles(){
         // let obstaclesArray = []
@@ -107,11 +114,13 @@ window.addEventListener('load', function() {
         ctx.clearRect(0, 0, canvas.width, canvas.height)
         character.update()
         obstacle1.moveObstacle()
+        obstacle2.moveObstacle()
+        obstacle3.moveObstacle()
+
+
         collisions()
+        
     }
-
-
-
     
     function collisions() {
 
@@ -124,14 +133,15 @@ window.addEventListener('load', function() {
             charPos.y < obstPos.y + obstacle1.height &&
             charPos.x < obstPos.x + obstacle1.width 
             ){
-                obstacle1.velocity = 0
                 character.velocity = 0
+                obstacle1.velocity = 0
                 gameOver()
             }        
     }
         
         
     function gameOver() {
+        
         const container = document.querySelector('#container')
 
         const wrapper = document.createElement('div')

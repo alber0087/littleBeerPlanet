@@ -119,7 +119,7 @@ body {
     width: fit-content;
     height: 50px;
     color: white;
-    font-family: 'Courier New', Courier, monospace;
+    font-family: Courier, monospace;
     font-size: 40px;
     font-weight: 600;
     display: flex;
@@ -139,7 +139,7 @@ body {
     align-items: center;
     cursor: crosshair;
     font-size: 60px;
-    font-family: 'Courier New', Courier, monospace;
+    font-family: Courier, monospace;
     font-weight: 600;
     z-index: 15;
 }
