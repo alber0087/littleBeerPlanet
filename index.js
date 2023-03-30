@@ -1,6 +1,13 @@
 // Waits for loading all the assets
 
 window.addEventListener('load', function() {
+
+    const music = new Audio('/assets/sounds/sor-st1.mp3')
+    const fx1   = new Audio('./assets/sounds/Jump (2).wav')
+    const fx2   = new Audio('./assets/sounds/Explosion 19.wav')
+
+    music.volume = 0.2
+    fx1.volume = 0.2
     
     const canvas    = document.querySelector('canvas')
     const ctx       =   canvas.getContext('2d')
@@ -19,11 +26,12 @@ window.addEventListener('load', function() {
     let scoreDisplay = document.createElement('p')
     display.appendChild(scoreDisplay)
     
-    function InputHandler() {
-        
-        
+    function InputHandler() { 
         window.addEventListener('keydown', (e) => {
-            if(e.key === 'ArrowUp' && character.position.y > canvas.height - character.height) { character.velocity.y -= 8 }
+            if(e.key === 'ArrowUp' && character.position.y > canvas.height - character.height) { 
+                character.velocity.y -= 8
+                fx1.play()
+            }
         })
         window.addEventListener('keyup',   (e) => {
             if(e.key === 'ArrowUp')                                                            { character.velocity.y  = 0 }
@@ -116,7 +124,6 @@ window.addEventListener('load', function() {
     
     function explode() {
         const container = document.querySelector('#container')
-        
         const xpl       = document.createElement('img')
         container.appendChild(xpl)
         xpl.setAttribute('src', './assets/img/explosion.gif')
@@ -140,6 +147,7 @@ window.addEventListener('load', function() {
     
     function gameOver() {
         explode()
+        fx2.play()
         const wrapper = document.createElement('div')
         const mensaje = document.createElement('img')
         const restart = document.createElement('div')
@@ -153,9 +161,7 @@ window.addEventListener('load', function() {
         setTimeout(() => {
             restart.classList.add('restart')
             wrapper.appendChild(restart)
-
             restart.innerHTML = '<span>-- RESTART --</span>'
-
         }, 1500)
         
         restart.addEventListener('click', function(){
@@ -168,10 +174,12 @@ window.addEventListener('load', function() {
     function start(){
         const display   = document.querySelector('.display')
         const container = document.querySelector('#container')
+        const start     = document.createElement('div')
+        music.play()
+
         container.removeChild(display) 
         container.classList.add('cursor-off')
 
-        const start = document.createElement('div')
         start.classList.add('start')
         document.body.appendChild(start)
     
