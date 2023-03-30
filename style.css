@@ -67,12 +67,8 @@ body {
 }
 
 @keyframes moveBg {
-    0% {
-        transform: translate3d(0, 0, 0);
-    }
-    100% {
-        transform: translate3d(-1200px, 0, 0);
-    }
+    0%   { transform: translate3d(0, 0, 0)       }
+    100% { transform: translate3d(-1200px, 0, 0) }
 }
 
 .display {
@@ -94,10 +90,6 @@ body {
 
 .display-off {
     display: none;
-}
-
-.obstacle {
-    z-index: 12;
 }
 
 .wrapper {
@@ -157,4 +149,9 @@ body {
     width: 200px;
     height: 200px;
     z-index: 99;
+}
+
+.character {
+    height: 100px;
+    width: 100px;
 }

@@ -9,20 +9,21 @@ window.addEventListener('load', function() {
     music.volume = 0.2
     fx1.volume = 0.2
     
-    const canvas    = document.querySelector('canvas')
-    const ctx       =   canvas.getContext('2d')
+    const canvas     = document.querySelector('canvas')
+    const ctx        =   canvas.getContext('2d')
 
-    const playerGif = document.getElementById('gif')
-    const obstGif   = document.getElementById('obstGif')
+    const playerGif  = document.getElementById('gif')
+    // const playerGif2 = document.getElementById('gif2')
+    const obstGif    = document.getElementById('obstGif')
     
-    const gravity   =        0.1
+    const gravity    =        0.1
     
-    canvas.height   =      680
-    canvas.width    =     1200
-    let score       =        0
-    const obstacles =       []
+    canvas.height    =      680
+    canvas.width     =     1200
+    let score        =        0
+    const obstacles  =       []
     
-    const display = document.querySelector('.display')
+    const display    = document.querySelector('.display')
     let scoreDisplay = document.createElement('p')
     display.appendChild(scoreDisplay)
     
@@ -53,9 +54,14 @@ window.addEventListener('load', function() {
     Player.prototype.drawCharacter = function() {
         ctx.drawImage(playerGif, this.position.x, this.position.y, this.width, this.height)
     }
+
+/*     Player.prototype.drawCharacter2 = function () {
+        ctx.drawImage(playerGif2, this.position.x, this.position.y, this.width, this.height)
+    } */
     
     Player.prototype.update = function() {
         this.drawCharacter()
+        // this.drawCharacter2()
         this.position.x += this.velocity.x
         this.position.y += this.velocity.y
         
@@ -78,6 +84,7 @@ window.addEventListener('load', function() {
     Obstacle.prototype.drawObstacle = function() {
         ctx.drawImage(obstGif, this.position.x, this.position.y, this.width, this.height)
     }
+
     Obstacle.prototype.moveObstacle = function() {
         this.drawObstacle()
         this.position.x += this.velocity.x
