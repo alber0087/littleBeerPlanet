@@ -19,12 +19,19 @@ window.addEventListener('load', function() {
     display.appendChild(scoreDisplay)
 
     function InputHandler() {
-        let isJumping = false
+
+
         window.addEventListener('keydown', (e) => {
-            if (e.key === 'ArrowUp' && !isJumping)   { character.velocity.y -= 15 }
+            console.log(character.position)
+            if (e.key === 'ArrowUp' && character.position.y > canvas.height - character.height)   { 
+                character.velocity.y -= 8
+
+            }
         })
         window.addEventListener('keyup',   (e) => {
-            if (e.key === 'ArrowUp')                 { character.velocity.y  = 0  }
+            if (e.key === 'ArrowUp')                 { 
+                character.velocity.y  = 0
+            }
         })
     }
     
