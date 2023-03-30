@@ -1,4 +1,3 @@
-
 // Waits for loading all the assets
 
 window.addEventListener('load', function() {
@@ -41,7 +40,6 @@ window.addEventListener('load', function() {
         ctx.fillStyle = 'blue'
         ctx.fillRect(this.position.x, this.position.y, this.width, this.height)
         // ctx.drawImage(image, this.position.x, this.position.y, this.width, this.height)
-        
     }
     
     Player.prototype.update = function() {
@@ -92,16 +90,7 @@ window.addEventListener('load', function() {
         scoreDisplay.innerText = score
     }
 
-    function animate(){
-        requestAnimationFrame(animate)
-        ctx.clearRect(0, 0, canvas.width, canvas.height)
-        character.update()
-        collisions()
-        displayStats()  
-        obstacles.forEach(obstacle => {
-            obstacle.moveObstacle()
-        })
-    }
+    // ---------------------------------------------------------- //
     
     function collisions() {
         obstacles.forEach((obstacle) => {
@@ -119,8 +108,22 @@ window.addEventListener('load', function() {
                     gameOver()
                 }        
             }
-        )}
+            )}
+
+    // ---------------------------------------------------------- //
             
+    function animate(){
+        requestAnimationFrame(animate)
+        ctx.clearRect(0, 0, canvas.width, canvas.height)
+        character.update()
+        collisions()
+        displayStats()  
+        obstacles.forEach(obstacle => {
+            obstacle.moveObstacle()
+        })
+    }
+
+    // ---------------------------------------------------------- //
             
     function gameOver() {
         const wrapper = document.createElement('div')
@@ -145,6 +148,8 @@ window.addEventListener('load', function() {
         })
     }
     
+    // ---------------------------------------------------------- //
+
     function start(){
         const display   = document.querySelector('.display')
         const container = document.querySelector('#container')
@@ -161,9 +166,7 @@ window.addEventListener('load', function() {
             container.appendChild(display)
         })
     }
-
     start()
-
 })
 
 
