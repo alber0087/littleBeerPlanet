@@ -2,111 +2,90 @@
 // Waits for loading all the assets
 
 window.addEventListener('load', function() {
-
-    const canvas = document.querySelector('canvas')
-    const ctx = canvas.getContext('2d')
-    canvas.height = 680
-    canvas.width = 1200
+    
+    const canvas    = document.querySelector('canvas')
+    const ctx       =   canvas.getContext('2d')
+    const gravity   =        0.1
+    canvas.height   =      680
+    canvas.width    =     1200
+    let score       =        0
+    const obstacles =       []
+    
+    const display = document.querySelector('.display')
+    let scoreDisplay = document.createElement('p')
+    display.appendChild(scoreDisplay)
 
     function InputHandler() {
         let isJumping = false
         window.addEventListener('keydown', (e) => {
-            if (e.key === 'ArrowUp' && !isJumping) { 
-                character.velocity.y -= 15 
-            }
+            if (e.key === 'ArrowUp' && !isJumping)   { character.velocity.y -= 15 }
         })
         window.addEventListener('keyup',   (e) => {
-            if (e.key === 'ArrowUp') { 
-                character.velocity.y = 0
-            }
+            if (e.key === 'ArrowUp')                 { character.velocity.y  = 0  }
         })
     }
-
+    
     const input = new InputHandler()
-
-
+    
+    
     // --------------------------------------------------------------- //
-
-    const gravity = 0.1
-
+    
     function Player(){
-        this.position = {
-            x: 100,
-            y: 100
-        }
-        this.velocity = {
-            x: 0,
-            y: 0
-        }
-        this.width = 100
-        this.height = 100
+        this.position = { x: 100, y: 100 }
+        this.velocity = { x: 0,   y: 0   }
+        this.width    = 100
+        this.height   = 100
     }
     
     Player.prototype.drawCharacter = function() {
-        ctx.beginPath()
         ctx.fillStyle = 'blue'
         ctx.fillRect(this.position.x, this.position.y, this.width, this.height)
         // ctx.drawImage(image, this.position.x, this.position.y, this.width, this.height)
-
+        
     }
-
+    
     Player.prototype.update = function() {
         this.drawCharacter()
         this.position.x += this.velocity.x
         this.position.y += this.velocity.y
-
+        
         if(this.position.y + this.height + this.velocity.y <= canvas.height) this.velocity.y += gravity 
         else this.velocity.y = 0
     }
-
-    const character = new Player()
-
     
+    const character = new Player()
+    
+
     // OBSTÁCULOS
     
     function Obstacle() {
-        this.position = {
-            x: 1100,
-            y: 580
-        }
-        this.velocity = {
-            x: 0,
-            y: 0
-        }
-        this.width = 100
-        this.height = 100
+        this.position = { x: 1100, y: 580 }
+        this.velocity = { x: 0,    y: 0   }
+        this.width    = 100
+        this.height   = 100
     }
     
     Obstacle.prototype.drawObstacle = function() {
-        ctx.fillStyle = 'red'
+        ctx.fillStyle = 'red' 
         ctx.fillRect(this.position.x, this.position.y, this.width, this.height)
     }
     Obstacle.prototype.moveObstacle = function() {
         this.drawObstacle()
         this.position.x += this.velocity.x
         this.position.x -= 3
-
+        
         if (this.position.x < (this.width)*(-1)) { this.velocity = 0}
     }
-
-    const obstacles = []
-    const count = 0
-
+    
     const generateObstacle = function() {
         let count = new Obstacle
         obstacles.push(count)
         count++
     }
-
+    
     const timer = setInterval(() => {
         generateObstacle()
     }, 3000)
-
-    let score = 0
-    const display = document.querySelector('.display')
-    let scoreDisplay = document.createElement('p')
-    display.appendChild(scoreDisplay)
-
 
     function displayStats(){
         score = obstacles.length
@@ -117,12 +96,11 @@ window.addEventListener('load', function() {
         requestAnimationFrame(animate)
         ctx.clearRect(0, 0, canvas.width, canvas.height)
         character.update()
+        collisions()
+        displayStats()  
         obstacles.forEach(obstacle => {
             obstacle.moveObstacle()
         })
-
-        collisions()
-        displayStats()  
     }
     
     function collisions() {
@@ -141,24 +119,19 @@ window.addEventListener('load', function() {
                     gameOver()
                 }        
             }
-            )}
+        )}
             
             
     function gameOver() {
-
-
         const wrapper = document.createElement('div')
-        wrapper.classList.add('wrapper')
-
         const mensaje = document.createElement('img')
+        const restart = document.createElement('div')
+        wrapper.classList.add('wrapper')
         mensaje.classList.add('game-over')
-        mensaje.setAttribute('src', './assets/img/gameover.png')
-
         container.appendChild(wrapper)
         wrapper.appendChild(mensaje)
-
-        const restart = document.createElement('div')
-
+        mensaje.setAttribute('src', './assets/img/gameover.png')
+        
         setTimeout(() => {
             restart.classList.add('restart')
             wrapper.appendChild(restart)
@@ -173,7 +146,7 @@ window.addEventListener('load', function() {
     }
     
     function start(){
-        const display = document.querySelector('.display')
+        const display   = document.querySelector('.display')
         const container = document.querySelector('#container')
         container.removeChild(display) 
 
