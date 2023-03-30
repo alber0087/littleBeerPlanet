@@ -98,6 +98,7 @@ body {
     font-weight: 600;
     font-family: Courier, monospace;
     z-index: 11;
+    cursor: none;
 }
 
 .display-off {
