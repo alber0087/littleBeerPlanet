@@ -25,9 +25,9 @@ body {
 }
 
 #canvas {
+    position: absolute;
     height: 680px;
     width: 1200px;
-    position: relative;
     z-index: 10;
 }
 
@@ -75,14 +75,6 @@ body {
     }
 }
 
-.character {
-    width: 100px;
-    height: 100px;
-    z-index: 9;
-    background: url(./assets/img/AlBeer.gif) no-repeat;
-    background-size: contain;
-}
-
 .display {
     position: absolute;
     top: 2.5%;
@@ -98,7 +90,6 @@ body {
     font-weight: 600;
     font-family: Courier, monospace;
     z-index: 11;
-    cursor: none;
 }
 
 .display-off {

@@ -4,6 +4,10 @@ window.addEventListener('load', function() {
     
     const canvas    = document.querySelector('canvas')
     const ctx       =   canvas.getContext('2d')
+
+    const playerGif = document.getElementById('gif')
+    const obstGif   = document.getElementById('obstGif')
+    
     const gravity   =        0.1
     canvas.height   =      680
     canvas.width    =     1200
@@ -32,14 +36,12 @@ window.addEventListener('load', function() {
     function Player(){
         this.position = { x: 100, y: 100 }
         this.velocity = { x: 0,   y: 0   }
-        this.width    = 100
-        this.height   = 100
+        this.width    = 120
+        this.height   = 120
     }
     
     Player.prototype.drawCharacter = function() {
-        ctx.fillStyle = 'blue'
-        ctx.fillRect(this.position.x, this.position.y, this.width, this.height)
-        // ctx.drawImage(image, this.position.x, this.position.y, this.width, this.height)
+        ctx.drawImage(playerGif, this.position.x, this.position.y, this.width, this.height)
     }
     
     Player.prototype.update = function() {
@@ -64,8 +66,8 @@ window.addEventListener('load', function() {
     }
     
     Obstacle.prototype.drawObstacle = function() {
-        ctx.fillStyle = 'red' 
-        ctx.fillRect(this.position.x, this.position.y, this.width, this.height)
+        ctx.drawImage(obstGif, this.position.x, this.position.y, this.width, this.height)
+        
     }
     Obstacle.prototype.moveObstacle = function() {
         this.drawObstacle()
@@ -108,7 +110,7 @@ window.addEventListener('load', function() {
                     gameOver()
                 }        
             }
-            )}
+        )}
 
     // ---------------------------------------------------------- //
             
