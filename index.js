@@ -14,8 +14,6 @@ window.addEventListener('load', function() {
     canvas.width    =     1200
     let score       =        0
     const obstacles =       []
-
-    
     
     const display = document.querySelector('.display')
     let scoreDisplay = document.createElement('p')
@@ -71,7 +69,6 @@ window.addEventListener('load', function() {
     
     Obstacle.prototype.drawObstacle = function() {
         ctx.drawImage(obstGif, this.position.x, this.position.y, this.width, this.height)
-        
     }
     Obstacle.prototype.moveObstacle = function() {
         this.drawObstacle()
@@ -114,10 +111,20 @@ window.addEventListener('load', function() {
                     gameOver()
                 }        
             }
-        )}
-
+        )
+    }
+    
+    function explode() {
+        const container = document.querySelector('#container')
+        
+        const xpl       = document.createElement('img')
+        container.appendChild(xpl)
+        xpl.setAttribute('src', './assets/img/explosion.gif')
+        xpl.classList.add('explosion')
+    }
+    
     // ---------------------------------------------------------- //
-            
+    
     function animate(){
         requestAnimationFrame(animate)
         ctx.clearRect(0, 0, canvas.width, canvas.height)
@@ -128,10 +135,11 @@ window.addEventListener('load', function() {
             obstacle.moveObstacle()
         })
     }
-
+    
     // ---------------------------------------------------------- //
-            
+    
     function gameOver() {
+        explode()
         const wrapper = document.createElement('div')
         const mensaje = document.createElement('img')
         const restart = document.createElement('div')

@@ -149,3 +149,12 @@ body {
 .cursor-off {
     cursor: none;
 }
+
+.explosion {
+    position: absolute;
+    left: 100px;
+    bottom: 0;
+    width: 200px;
+    height: 200px;
+    z-index: 99;
+}
