@@ -145,3 +145,7 @@ body {
     font-weight: 600;
     z-index: 15;
 }
+
+.cursor-off {
+    cursor: none;
+}

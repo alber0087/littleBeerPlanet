@@ -9,29 +9,26 @@ window.addEventListener('load', function() {
     const obstGif   = document.getElementById('obstGif')
     
     const gravity   =        0.1
+    
     canvas.height   =      680
     canvas.width    =     1200
     let score       =        0
     const obstacles =       []
+
+    
     
     const display = document.querySelector('.display')
     let scoreDisplay = document.createElement('p')
     display.appendChild(scoreDisplay)
-
+    
     function InputHandler() {
-
-
+        
+        
         window.addEventListener('keydown', (e) => {
-            console.log(character.position)
-            if (e.key === 'ArrowUp' && character.position.y > canvas.height - character.height)   { 
-                character.velocity.y -= 8
-
-            }
+            if(e.key === 'ArrowUp' && character.position.y > canvas.height - character.height) { character.velocity.y -= 8 }
         })
         window.addEventListener('keyup',   (e) => {
-            if (e.key === 'ArrowUp')                 { 
-                character.velocity.y  = 0
-            }
+            if(e.key === 'ArrowUp')                                                            { character.velocity.y  = 0 }
         })
     }
     
@@ -62,7 +59,7 @@ window.addEventListener('load', function() {
     
     const character = new Player()
     
-
+    
     // OBSTÁCULOS
     
     function Obstacle() {
@@ -79,7 +76,7 @@ window.addEventListener('load', function() {
     Obstacle.prototype.moveObstacle = function() {
         this.drawObstacle()
         this.position.x += this.velocity.x
-        this.position.x -= 3
+        this.position.x -= (3 * score) / 2.5
         
         if (this.position.x < (this.width)*(-1)) { this.velocity = 0}
     }
@@ -126,7 +123,7 @@ window.addEventListener('load', function() {
         ctx.clearRect(0, 0, canvas.width, canvas.height)
         character.update()
         collisions()
-        displayStats()  
+        displayStats()
         obstacles.forEach(obstacle => {
             obstacle.moveObstacle()
         })
@@ -141,6 +138,7 @@ window.addEventListener('load', function() {
         wrapper.classList.add('wrapper')
         mensaje.classList.add('game-over')
         container.appendChild(wrapper)
+        container.classList.remove('cursor-off')
         wrapper.appendChild(mensaje)
         mensaje.setAttribute('src', './assets/img/gameover.png')
         
@@ -163,6 +161,7 @@ window.addEventListener('load', function() {
         const display   = document.querySelector('.display')
         const container = document.querySelector('#container')
         container.removeChild(display) 
+        container.classList.add('cursor-off')
 
         const start = document.createElement('div')
         start.classList.add('start')
