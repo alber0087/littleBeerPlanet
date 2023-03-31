@@ -107,6 +107,12 @@ body {
     height: 370px;
     object-fit: cover;
     z-index: 15;
+    animation: scale 1.5s alternate infinite ease-in;
+}
+
+@keyframes scale {
+    0%      {transform: scale(0.8);}
+    100%    {transform: scale(1.2);}
 }
 
 .restart {
@@ -123,11 +129,15 @@ body {
     z-index: 15;
 }
 
+.restart:active {
+    color: white;
+}
+
 .start {
+    color: var(--color-primary);
     position: absolute;
     height: 300px;
     width: 600px;
-    color: var(--color-primary);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -136,6 +146,15 @@ body {
     font-family: Courier, monospace;
     font-weight: 600;
     z-index: 15;
+}
+
+.start:active {
+    color: white;
+}
+
+.start > span {
+    position: absolute;
+    top: 50%;
 }
 
 .cursor-off {
@@ -151,7 +170,6 @@ body {
     z-index: 99;
 }
 
-.character {
-    height: 100px;
-    width: 100px;
+img.html {
+    display: none;
 }

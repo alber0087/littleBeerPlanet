@@ -139,19 +139,6 @@ window.addEventListener('load', function() {
     
     // ---------------------------------------------------------- //
     
-    function animate(){
-        requestAnimationFrame(animate)
-        ctx.clearRect(0, 0, canvas.width, canvas.height)
-        character.update()
-        collisions()
-        displayStats()
-        obstacles.forEach(obstacle => {
-            obstacle.moveObstacle()
-        })
-    }
-    
-    // ---------------------------------------------------------- //
-    
     function gameOver() {
         explode()
         fx2.play()
@@ -173,6 +160,20 @@ window.addEventListener('load', function() {
         
         restart.addEventListener('click', function(){
             location.reload()
+        })
+    }
+
+
+    // ---------------------------------------------------------- //
+    
+    function animate(){
+        requestAnimationFrame(animate)
+        ctx.clearRect(0, 0, canvas.width, canvas.height)
+        character.update()
+        collisions()
+        displayStats()
+        obstacles.forEach(obstacle => {
+            obstacle.moveObstacle()
         })
     }
     
