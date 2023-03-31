@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Courier+Prime:wght@700&display=swap');
+
 :root {
     --color-primary:   hsl(170,98%,50%);
     --color-secondary: hsl(300, 84%, 64%);
@@ -84,7 +86,7 @@ body {
     color: var(--color-primary);
     font-size: 2.5rem;
     font-weight: 600;
-    font-family: Courier, monospace;
+    font-family: 'Courier Prime', monospace;
     z-index: 11;
 }
 
@@ -119,7 +121,7 @@ body {
     width: fit-content;
     height: 50px;
     color: var(--color-primary);
-    font-family: Courier, monospace;
+    font-family: 'Courier Prime', monospace;
     font-size: 40px;
     font-weight: 600;
     display: flex;
@@ -143,7 +145,7 @@ body {
     align-items: center;
     cursor: crosshair;
     font-size: 60px;
-    font-family: Courier, monospace;
+    font-family: 'Courier Prime', monospace;
     font-weight: 600;
     z-index: 15;
 }
