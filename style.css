@@ -173,3 +173,7 @@ body {
 img.html {
     display: none;
 }
+
+div.display {
+    display: none;
+}
